@@ -11,7 +11,7 @@ A Spring Boot Application is created
 - The code should be stored in github
 - github users Mowee, stdogr and rebekka-s should have read access to the code  
 
-### *Hints / Remarks:* \
+### *Hints / Remarks:*
 - Remember to write unit tests for the application.
 There is no expectation of creating a security group in AWS and use the data.
 
