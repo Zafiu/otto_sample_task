@@ -1,21 +1,14 @@
 package otto.sample_task.service
-
-import com.google.gson.Gson
 import org.springframework.stereotype.Service
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse
+import otto.sample_task.data.Data
+import otto.sample_task.data.RegionData
+
 
 /**
- * This service is responsible for requesting, parsing and also filtering ip-data.
+ * This service is responsible for filtering ip-data.
  */
 @Service
-class RegionService {
-    data class RegionMeta(val syncToken: String, val createDate: String, val prefixes: ArrayList<Region>)
-    data class Region(val ip_prefix: String, val region: String, val service: String, val network_border_group: String)
-
-    private val address: String = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+class RegionService(private val data: Data) {
     val validRegions = listOf("eu", "us", "ap", "cn", "sa", "af", "ca")
     val allRegion = "all"
 
@@ -29,9 +22,9 @@ class RegionService {
     /**
      * filter by one region
      */
-    fun getData(region: String): ArrayList<Region> {
-        val result = ArrayList<Region>()
-        val regionMeta = requestData()
+    fun getData(region: String): ArrayList<RegionData.Region> {
+        val result = ArrayList<RegionData.Region>()
+        val regionMeta = data.requestData()
         for (reg in regionMeta.prefixes) {
             if (reg.region.substring(0, 2) == region) {
                 result.add(reg)
@@ -44,9 +37,9 @@ class RegionService {
     /**
      * filter by all valid regions
      */
-    fun getData(): ArrayList<Region> {
-        val result = ArrayList<Region>()
-        val regionMeta = requestData()
+    fun getData(): ArrayList<RegionData.Region> {
+        val result = ArrayList<RegionData.Region>()
+        val regionMeta = data.requestData()
         for (reg in regionMeta.prefixes) {
 
             if (isValid(reg.region.substring(0, 2))) {
@@ -55,15 +48,5 @@ class RegionService {
         }
 
         return result;
-    }
-
-    private fun requestData(): RegionMeta {
-        val client = HttpClient.newBuilder().build();
-        val request = HttpRequest.newBuilder()
-            .uri(URI.create(address))
-            .build();
-        val response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        return Gson().fromJson(response.body(), RegionMeta::class.java);
     }
 }
