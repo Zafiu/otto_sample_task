@@ -9,4 +9,11 @@ A Spring Boot Application is created
 - Each value is shown as single line in the output  
 - The data (from AWS ip-ranges.json) is not stored  
 - The code should be stored in github
--github users Mowee, stdogr and rebekka-s should have read access to the code  
+- github users Mowee, stdogr and rebekka-s should have read access to the code  
+
+### *Hints / Remarks:* \
+- Remember to write unit tests for the application.
+There is no expectation of creating a security group in AWS and use the data.
+
+- A pipeline in github actions is not requested but would be plus.
+- Putting the app into a docker container is not requested but would be plus. 
