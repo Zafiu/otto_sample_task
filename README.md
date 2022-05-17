@@ -1,4 +1,11 @@
 ## otto sample task
+### Setup with Docker
+1. ./gradle build
+2. docker build -t otto_sample_task_zafar .
+3. docker run -d --name otto_sample_task_zafar -p 8080:8080 otto_sample_task_zafar
+
+### Example Usage
+http://127.0.0.1:8080/region?region=ca
 
 ### Acceptance Criteria:
 A Spring Boot Application is created 
