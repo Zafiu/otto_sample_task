@@ -12,7 +12,7 @@ import java.net.http.HttpResponse
 /**
  * This service is responsible for requesting and parsing ip-data.
  */
-class RegionRegionDataService: RegionData {
+class RegionDataService: RegionData {
     private val address: String = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 
     override fun requestData(): RegionData.RegionMeta {
