@@ -2,7 +2,7 @@ package otto.sample_task
 
 import otto.sample_task.data.RegionData
 
-class RegionRegionDataMock : RegionData {
+class RegionDataMock : RegionData {
     override fun requestData(): RegionData.RegionMeta {
 
         val prefixes = arrayListOf(
