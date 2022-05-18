@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import otto.sample_task.service.RegionService
 
 class RegionServiceTest {
-    private val regionService: RegionService = RegionService(RegionDataMock());
+    private val regionService: RegionService = RegionService(RegionRegionDataMock());
 
     @Test
     fun find_eu() {

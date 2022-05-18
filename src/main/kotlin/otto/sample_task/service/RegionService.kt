@@ -1,13 +1,13 @@
 package otto.sample_task.service
 import org.springframework.stereotype.Service
-import otto.sample_task.data.Data
+import otto.sample_task.data.RegionData
 
 
 /**
  * This service is responsible for filtering ip-data.
  */
 @Service
-class RegionService(private val data: Data) {
+class RegionService(private val regionData: RegionData) {
     val validRegions = listOf("eu", "us", "ap", "cn", "sa", "af", "ca")
     val allRegion = "all"
 
@@ -21,9 +21,9 @@ class RegionService(private val data: Data) {
     /**
      * filter by one region
      */
-    fun getData(region: String): ArrayList<Data.Region> {
-        val result = ArrayList<Data.Region>()
-        val regionMeta = data.requestData()
+    fun getData(region: String): ArrayList<RegionData.Region> {
+        val result = ArrayList<RegionData.Region>()
+        val regionMeta = regionData.requestData()
         for (reg in regionMeta.prefixes) {
             if (reg.region.substring(0, 2) == region) {
                 result.add(reg)
@@ -36,9 +36,9 @@ class RegionService(private val data: Data) {
     /**
      * filter by all valid regions
      */
-    fun getData(): ArrayList<Data.Region> {
-        val result = ArrayList<Data.Region>()
-        val regionMeta = data.requestData()
+    fun getData(): ArrayList<RegionData.Region> {
+        val result = ArrayList<RegionData.Region>()
+        val regionMeta = regionData.requestData()
         for (reg in regionMeta.prefixes) {
 
             if (isValid(reg.region.substring(0, 2))) {
