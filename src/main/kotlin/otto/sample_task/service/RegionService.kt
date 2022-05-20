@@ -1,4 +1,6 @@
 package otto.sample_task.service
+
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import otto.sample_task.data.RegionData
 
@@ -8,8 +10,12 @@ import otto.sample_task.data.RegionData
  */
 @Service
 class RegionService(private val regionData: RegionData) {
-    val validRegions = listOf("eu", "us", "ap", "cn", "sa", "af", "ca")
-    val allRegion = "all"
+    // val validRegions = listOf("eu", "us", "ap", "cn", "sa", "af", "ca")
+    @Value("\${region.valid.ranges}")
+    val validRegions: List<String> = listOf()
+
+    @Value("\${region.valid.ranges.all}")
+    val allRegion: String = ""
 
     /**
      * validate region

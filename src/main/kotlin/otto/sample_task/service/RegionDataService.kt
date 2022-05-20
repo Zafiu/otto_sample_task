@@ -15,8 +15,9 @@ import java.net.http.HttpResponse
  */
 class RegionDataService: RegionData {
 
-    @Value("\${aws.address}")
+    @Value("\${region.aws.address}")
     private val address: String = ""
+
     override fun requestData(): RegionData.RegionMeta {
         val client = HttpClient.newBuilder().build();
         val request = HttpRequest.newBuilder()
